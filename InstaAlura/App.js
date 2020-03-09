@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import { ScrollView, FlatList } from 'react-native';
+import { ScrollView, FlatList, StatusBar, Platform } from 'react-native';
 import { Cabecalho } from './src/Components/Cabecalho/'
 import { Foto } from './src/Components/Foto';
 import lerFotos from './src/api/feed';
@@ -14,9 +14,15 @@ const App = () => {
     lerFotos(setFotos);
   }, []);
 
+  let altura = 0;
+
+  if(Platform.OS == "ios")
+    altura = 35;
+    
   return (
     
-      <ScrollView>
+      <ScrollView style={{marginTop:altura}}>
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
         <FlatList 
           data={fotos}
           renderItem={({item}) => 
