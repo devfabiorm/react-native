@@ -3,6 +3,7 @@ import { ScrollView, FlatList } from 'react-native';
 import { Cabecalho } from './src/Components/Cabecalho/'
 import { Foto } from './src/Components/Foto';
 import lerFotos from './src/api/feed';
+import {Comentarios} from './src/Components/Comentarios';
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
             <Fragment>
               <Cabecalho nomeUsuario={item.userName} fotoUsuario={item.userURL}/>
               <Foto imageUrl={item.url} descricao={item.description} quantidade={item.likes} />
+              <Comentarios comentarios={item.comentarios} />
             </Fragment>
             } 
           keyExtractor={item => item.id.toString()} />
