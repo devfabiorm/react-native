@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { TextInput, View, Button, Text } from 'react-native';
+import { TextInput, View, Button, Text, Platform } from 'react-native';
 import estilo from './estilo';
 import efetuarLogin from '../../api/EfetuarLogin';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -17,7 +17,7 @@ const Login = ({ navigation }) => {
             const token = await efetuarLogin(usuario, senha);
             await AsyncStorage.setItem("instaAlura-token", token);
             //Ir para a tela de Feed
-            navigation.push("Feed");
+            navigation.replace("Feed", {nome: usuario});
         }catch(erro){
             setMsgErro(erro.message);
         }
@@ -36,6 +36,18 @@ const Login = ({ navigation }) => {
             </View>
         </Fragment>
     );
+};
+
+Login.navigationOptions = () => {
+
+    const opcoes = {
+        title: "Login"
+    }
+
+    if(Platform.OS == 'android')
+        opcoes.headerShow = false;
+
+    return opcoes;
 }
 
 export default Login;

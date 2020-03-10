@@ -18,9 +18,6 @@ const Feed = () => {
   }, []);
 
   let altura = 0;
-
-  if(Platform.OS == "ios")
-    altura = 35;
     
   return (
     
@@ -39,5 +36,17 @@ const Feed = () => {
       </ScrollView>
   );
 };
+
+Feed.navigationOptions = ({ navigation }) => {
+
+  const opcoes = {
+      title: navigation.getParam("nome")
+  }
+
+  if(Platform.OS == 'android')
+      opcoes.headerShow = false;
+
+  return opcoes;
+}
 
 export default Feed;
