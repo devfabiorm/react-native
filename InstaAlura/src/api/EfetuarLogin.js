@@ -18,7 +18,7 @@ const efetuarLogin = async (usuario, senha) => {
     if(!resposta.ok)
         throw new Error("Não foi efetuar login")
     
-    console.warn(resposta);
+    return resposta.headers.get("x-access-token");
 };
 
 export default efetuarLogin;

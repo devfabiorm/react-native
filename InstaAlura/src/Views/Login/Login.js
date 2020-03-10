@@ -2,9 +2,10 @@ import React, { Fragment, useState } from 'react';
 import { TextInput, View, Button, Text } from 'react-native';
 import estilo from './estilo';
 import efetuarLogin from '../../api/EfetuarLogin';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
-const Login = () => {
+const Login = ({ navigation }) => {
 
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
@@ -13,7 +14,10 @@ const Login = () => {
     const tentarLogar = async () => {
 
         try{
-            await efetuarLogin(usuario, senha);
+            const token = await efetuarLogin(usuario, senha);
+            await AsyncStorage.setItem("instaAlura-token", token);
+            //Ir para a tela de Feed
+            navigation.push("Feed");
         }catch(erro){
             setMsgErro(erro.message);
         }
