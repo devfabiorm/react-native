@@ -10,6 +10,12 @@ const estilo = StyleSheet.create({
     },
     inputs : {
         width : largura * 0.8,
+        marginTop: 40,
+        fontSize: 30
+    },
+    botaoView: {
+        alignItems: "center",
+        marginBottom: 50
     }
 });
 
