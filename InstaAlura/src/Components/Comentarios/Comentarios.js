@@ -2,23 +2,17 @@ import React, { Fragment, useState } from 'react';
 import { FlatList, Text, TextInput, Image, View, TouchableOpacity } from 'react-native';
 import estilo from './estilo';
 
-const Comentarios = ({ comentarios }) => {
-
-    const [estComentarios, setComentarios] = useState(comentarios);
-
-    const comentar = () => {
-
-        const novoComentario = {
-            date: Date.Now,
-            text: conteudoCampoInput,
-            userName: "Fabio"
-        }
-        setComentarios([...estComentarios, novoComentario]);
-        refTextInput.clear();
-    }
-
+const Comentarios = ({ comentarios, adcComentario }) => {
     let conteudoCampoInput = "";
     let refTextInput = "";
+    const [estComentarios, setComentarios] = useState(comentarios);
+
+    const clicouComentar = () => {
+        refTextInput.clear();
+        const novoComentario = adcComentario(conteudoCampoInput, "Fabio");
+        setComentarios([...estComentarios, novoComentario]);
+    };
+    
 
     return (
 
@@ -35,7 +29,7 @@ const Comentarios = ({ comentarios }) => {
             />
             <View style={estilo.naMesmaLinha}>
                 <TextInput ref={referencia => refTextInput = referencia} placeholder={"Deixe seu comentários..."} style={{ flex: 1 }} onChangeText={texto => conteudoCampoInput = texto} />
-                <TouchableOpacity onPress={comentar}>
+                <TouchableOpacity onPress={clicouComentar}>
                     <Image source={require("../../../res/img/send.png")} style={estilo.botaoEnviar} />
                 </TouchableOpacity>
             </View>

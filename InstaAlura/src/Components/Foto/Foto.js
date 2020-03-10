@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import estilo from './estilo';
-import { curtirFoto, botaoLike } from '../../api/Curtidas';
 
-const Foto = ({ imageUrl, descricao, quantidade }) => {
+const Foto = ({ imageUrl, descricao, quantidade, curtirFoto, botaoLike }) => {
 
     const [curtiu, setCurtida] = useState(false);
     const [likes, setLikes] = useState(quantidade);
